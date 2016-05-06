@@ -36,9 +36,15 @@ var forExport = {
     })
     .then(function(body){
       body = JSON.parse(body);
-      console.log(body);
+      // console.log(body);
 
-// GET RANKED STATS BY SUMMONERID NEXT!!!!
+    rp('https://'+oldRegion+'.api.pvp.net/api/lol/'+oldRegion+'/v1.3/stats/by-summoner/'+summonerID+'/ranked?season=SEASON2016&api_key='+secrets.apiKey)
+    .catch(function(error){
+      console.log("ERROR: ", error);
+    })
+    .then(function(body){
+      console.log(body);
+    })
     })
     })
     
