@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/vokoshyv/wherebooty/issues"
   },
-  "homepage": "https://github.com/vokoshyv/wherebooty#readme"
+  "homepage": "https://github.com/vokoshyv/wherebooty#readme",
+  "dependencies": {
+    "consolidate": "^0.14.1",
+    "express": "^4.13.4",
+    "handlebars": "^4.0.5",
+    "request-promise": "^3.0.0"
+  }
 }
