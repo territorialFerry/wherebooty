@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/vokoshyv/wherebooty#readme",
   "dependencies": {
+    "bluebird": "^3.3.5",
     "consolidate": "^0.14.1",
     "express": "^4.13.4",
     "handlebars": "^4.0.5",
+    "request": "^2.72.0",
     "request-promise": "^3.0.0"
   }
 }
