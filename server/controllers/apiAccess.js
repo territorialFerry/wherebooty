@@ -1,5 +1,6 @@
 // file for accessing riot games api
 var rp = require('request-promise');
+var secrets = require('../secrets/keys.js');
 
 
 // GET request for getting summoner id from summoner name
