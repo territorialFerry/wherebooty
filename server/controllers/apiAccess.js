@@ -36,14 +36,61 @@ var forExport = {
     })
     .then(function(body){
       body = JSON.parse(body);
-      // console.log(body);
+      var championMasteryData = body;
 
     rp('https://'+oldRegion+'.api.pvp.net/api/lol/'+oldRegion+'/v1.3/stats/by-summoner/'+summonerID+'/ranked?season=SEASON2016&api_key='+secrets.apiKey)
     .catch(function(error){
       console.log("ERROR: ", error);
     })
     .then(function(body){
-      console.log(body);
+      body = JSON.parse(body);
+      var rankedData = body;
+
+      // console.log("CHAMP: ", championMasteryData);
+      // console.log("RANK: ", rankedData.champions);
+
+      var usefulRank = {};
+
+      for (var i = 0; i < rankedData.champions.length; i++){
+        usefulRank[rankedData.champions[i].id] = {
+          rankedWins: rankedData.champions[i].stats['totalSessionsWon'], 
+          rankedLosts: rankedData.champions[i].stats['totalSessionsLost']
+        }
+      }
+
+      // console.log(usefulRank);
+
+      var playedThisSeason = {};
+
+      championMasteryData.map(function(champ){
+        champ['rankedWins'] = usefulRank[champ.championId]? usefulRank[champ.championId].rankedWins : undefined;
+        champ['rankedLosts'] = usefulRank[champ.championId]? usefulRank[champ.championId].rankedLosts : undefined;
+        champ['name'] = champInfo[champ.championId]['name'];
+        champ['key'] = champInfo[champ.championId]['key'];
+        champ['title'] = champInfo[champ.championId]['title'];
+
+        playedThisSeason[champ.championId] = true;
+        return champ;
+      })
+
+      // console.log(playedThisSeason);
+      // console.log(championMasteryData);
+
+      for (var ID in champInfo){
+        if (playedThisSeason[ID] === undefined){
+          championMasteryData.push({
+            championId: ID, 
+            name: champInfo[ID]['name'], 
+            key: champInfo[ID]['key'], 
+            title: champInfo[ID]['title'], 
+          })
+        }
+      }
+      
+      console.log(championMasteryData);
+
+
+
     })
     })
     })
@@ -52,18 +99,9 @@ var forExport = {
   }
 
 
-  // GET request for getting top champions by playerID 
-
-  // GET request for getting ranked stats by playerID
-
-  // (maybe) GET request for most recent match data to grab championID for picture
-
-  // (maybe) GET request for static data on most recent champID
-
-
 }
 
-console.log(forExport.getData('na', 'vokoshyv'));
+console.log(forExport.getData('na', 'imarker'));
 
 module.exports = forExport;
 
