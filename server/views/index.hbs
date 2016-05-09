@@ -17,7 +17,7 @@
     <!-- <div class="darken">
     </div> -->
 
-    <p class="main-title">WHERE BE ME BOOTY???</p>
+    <p class="main-title">WHERE BE ME BOOTY?</p>
 
     <br>
     <br>
@@ -29,7 +29,11 @@
 
             <div class="input-field col m12 s12">
               <input placeholder="input here" id="first_name" type="text" class="validate" name="username" required>
+              {{#if error}}
+                <label for="first_name">USERNAME (username not found...)</label>
+              {{else}}
               <label for="first_name">USERNAME</label>
+              {{/if}}
             </div>
 
             <div class="input-field col m12 s12">
@@ -52,7 +56,7 @@
 
             <br>
             <div class="col s8 offset-s2">
-              <button class="btn waves-effect waves-light deep-orange lighten-5 black-text" type="submit">Submit
+              <button class="btn waves-effect waves-orange deep-orange lighten-5 black-text" type="submit">Submit
               </button>
             </div>
 

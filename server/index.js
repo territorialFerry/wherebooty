@@ -19,7 +19,6 @@ app.set('view engine', 'hbs');
 app.use(express.static(__dirname));
 
 app.get('/wherebooty', function(req, res, next){
-  console.log('haha');
   res.render('index');
 })
 

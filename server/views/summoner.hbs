@@ -13,116 +13,239 @@
 
 <body>
 
-  <div class="whole-box">
-    <!-- <div class="darken">
-    </div> -->
+  <div class="row">
+    
+    <div class="quasi-header">
+      
+      <div class="col m6 s10 offset-s1">
+        <div class="col s12">
+          <img class="whole-box get-image-center" src="https://40.media.tumblr.com/c569b72ae67be8dafd3fd76945fff3eb/tumblr_o64d9mHiFn1v87xy0o1_1280.png">
+          </img>
+        </div>
 
-    <p class="main-title">WHERE BE ME BOOTY???</p>
+        <div class="main-title col s10 offset-s1">
+          <p>{{forRender.summonerName}}'s booty</p>
+        </div>
+      </div>
 
-    <br>
-    <br>
-
-    <div class="row">
-      <div class="col m6 offset-m6 s12">
-
-          <form action="/wherebooty/data" class="col m10 offset-m1 white-text s12" method="get">
-
-            <div class="input-field col m12 s12">
-              <input placeholder="input here" id="first_name" type="text" class="validate" name="username" required>
-              <label for="first_name">USERNAME</label>
-            </div>
-
-            <div class="input-field col m12 s12">
-              <select name="region">
-                <!-- <option value="" disabled selected>Choose your option</option> -->
-                <option value="na">na</option>
-                <option value="br">br</option>
-                <option value="eune">eune</option>
-                <option value="euw">euw</option>
-                <option value="jp">jp</option>
-                <option value="kr">kr</option>
-                <option value="lan">lan</option>
-                <option value="las">las</option>
-                <option value="oce">oce</option>
-                <option value="ru">ru</option>
-                <option value="tr">tr</option>
-              </select>
-              <label>Input Region</label>
-            </div>
-
-            <br>
-            <div class="col s8 offset-s2">
-              <button class="btn waves-effect waves-light deep-orange lighten-5 black-text" type="submit">Submit
-              </button>
-            </div>
-
-
-
-          </form>
+      <div class="col m6 s10 offset-s1">
         
+        <br>
+        <div class="col s10 offset-s1">
+          <p>Blue ribbon - Chest has already been earned for this champion</p>
+          <p>Green ribbon - Chest has not been earned for this champion; mastery level is 4-5</p>
+          <p>Orange ribbon - Chest has not been earned for this champion; mastery level is 1-3</p>
+          <p>Red ribbon - Chest has not been earned for this champion; champion has not been played this season</p>
+        </div>
+
+        <div class="col s10 offset-s1 m10 offset-m1">
+          <div class="col s6 m6">
+            <!-- // already earned chest (blue border) -->
+            <div class="side-corner-tag champ-blue">
+              <img class="example-poro" src="http://vignette1.wikia.nocookie.net/leagueoflegends/images/3/3f/ProfileIcon936_Poro_Wizard_1.png/revision/latest?cb=20150922200243" alt="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/588.png">
+              <p><span>Earned</span></p>
+            </div>
+          </div>
+
+          <div class="col s6 m6">
+            <!-- // have not earned chest; high mastery level and/or win rate (green border) -->
+            <div class="side-corner-tag champ-green">
+              <img class="example-poro" src="https://avatar.leagueoflegends.com/NA/EclipsedFerret.png" alt="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/588.png">
+              <p><span>Master</span></p>
+            </div>
+          </div>
+
+          <div class="col s6 m6">
+            <!-- // have not earned chest; low mastery level and/or win rate (orange border) -->
+            <div class="side-corner-tag champ-orange">
+              <img class="example-poro" src="http://vignette3.wikia.nocookie.net/leagueoflegends/images/3/38/ProfileIcon905_Arcade_Sona_Poro.png/revision/latest?cb=20150812195306" alt="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/588.png">
+              <p><span>Novice</span></p>
+            </div>
+          </div>
+
+          <div class="col s6 m6">
+            <!-- // have not earned chest; low mastery level and/or win rate (red border) -->
+            <div class="side-corner-tag champ-red">
+              <img class="example-poro" src="http://apollo-pbe-uploads.s3.amazonaws.com/1436160361/profileIcon871.png" alt="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/588.png">
+              <p><span>No XP</span></p>
+            </div>
+          </div>
+        </div>
 
       </div>
+
     </div>
 
 
+    <div class="col s10 offset-s1">
+      
+      <div class="row">
+        
+      {{#each forRender.championMasteryData as |champ|}}
+        <div class="col s6 m3 l2">
+
+          <!-- handle div -->
+          <!-- handle image -->
+          <!-- handle type of word inside span -->
+          
+          <div class="col s12">
+            <p class="get-text-center">{{champ.name}}</p>
+          </div>
+
+        <div class="col l12 m12 s8 offset-s2">
+            
+          {{#if champ.championPoints}}
+            {{#if champ.chestGranted}}
+              <div class="each-champ side-corner-tag champ-blue">
+            {{else}}
+              {{#if champ.championLevel}}
+                <div class="each-champ side-corner-tag champ-green">
+              {{else}}
+                <div class="each-champ side-corner-tag champ-orange">
+              {{/if}}
+            {{/if}}
+          {{else}}
+            <div class="each-champ side-corner-tag champ-red">
+          {{/if}}
+          
+            <img class="example-poro" src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/{{champ.key}}.png" alt="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/profileicon/588.png">
+
+            {{#if champ.championPoints}}
+              {{#if champ.chestGranted}}
+                <p><span>Earned</span></p>
+              {{else}}
+                {{#if champ.championLevel}}
+                  <p><span>Master</span></p>
+                {{else}}
+                  <p><span>Novice</span></p>
+                {{/if}}
+              {{/if}}
+            {{else}}
+              <p><span>No XP</span></p>
+            {{/if}}
+          </div>
+
+        </div>
+
+        </div>
+      {{/each}}
+
+      </div>
+
+
+    </div>
 
   </div>
 
 </body>
 
 <style>
+
+.quasi-header {
+  background-color: grey;
+}
+
 .whole-box {
-  background-image: url("http://randomwallpapers.net/league-of-legends-gangplank-lol-1920x1080-wallpaper105828.jpg");
-  vertical-align: middle;
-  position: relative;
-  display: table;
   width: 100%;
-  height: 100vh;
-  background-size: cover;
-  overflow: hidden;
+  height: 100%;
+}
+
+.each-champ {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .main-title {
-  text-align: right;
-  color: white;
+  text-align: center;
   font-family: "Roboto";
-  font-size: 50px;
-  margin-right: 30px;
+  font-size: 40px;
+  /*margin-right: 30px;*/
 }
 
-.test {
-  background-color: white;
+.get-text-center {
+  text-align: center;
 }
 
-/* label color */
- .input-field label {
-   color: white;
- }
- /* label focus color */
- .input-field input[type=text]:focus + label {
-   color: white;
- }
- /* label underline focus color */
- .input-field input[type=text]:focus {
-   border-bottom: 1px solid white;
-   box-shadow: 0 1px 0 0 white;
- }
- /* valid color */
- .input-field input[type=text].valid {
-   border-bottom: 1px solid white;
-   box-shadow: 0 1px 0 0 white;
- }
- /* invalid color */
- .input-field input[type=text].invalid {
-   border-bottom: 1px solid white;
-   box-shadow: 0 1px 0 0 white;
- }
- /* icon prefix focus color */
- .input-field .prefix.active {
-   color: white;
- }
+.get-image-center {
+    margin: 0 auto;
+}
 
+.example-poro {
+  width: 100px;
+  height: 100px;
+}
 
+.side-corner-tag {
+    position: relative;
+    color: #fff;
+    display: inline-block;
+    padding: 5px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    font-weight: 900;
+} 
+ 
+.side-corner-tag p {
+    display: inline;    
+}
+
+.side-corner-tag p span {
+    position: absolute;
+    display: inline-block;
+    right: -25px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
+    text-align: center;
+    text-transform: uppercase;
+    top: 22px;
+    /*background: #d93131;*/
+    width: 100px;
+    padding: 3px 10px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+} 
+
+.side-corner-tag p:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -17px;
+    right: 69px;
+    z-index: -1;
+    border: 17px solid;
+    border-color: transparent transparent #662121 transparent;
+}
+ 
+.side-corner-tag p:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 74px;
+    z-index: -1;
+    right: -10px;
+    border: 17px solid;
+    border-color: #662121 transparent transparent transparent;
+}
+
+.champ-blue p span{
+  background: blue;
+}
+
+.champ-green p span{
+  background: green;
+}
+
+.champ-orange p span{
+  background: orange;
+}
+
+.champ-red p span{
+  background: red;
+}
 
 
 </style>
@@ -131,11 +254,5 @@
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    $('select').material_select();
-  });
-</script>
 
 </html>

@@ -13,6 +13,8 @@ var forExport = {
     rp('https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+summonerName+'?api_key='+secrets.apiKey)
     .catch(function(error){
       console.log("ERROR: ", error);
+      res.render('index', {error: 'username not found'});
+      return;
     })
     .then(function(body){
       body = JSON.parse(body);
@@ -33,6 +35,8 @@ var forExport = {
     rp('https://'+oldRegion+'.api.pvp.net/championmastery/location/'+newRegion+'/player/'+summonerID+'/topchampions?count=200&api_key='+secrets.apiKey)
     .catch(function(error){
       console.log("ERROR: ", error);
+      res.render('index', {error: 'username not found'});
+      return;
     })
     .then(function(body){
       body = JSON.parse(body);
@@ -41,6 +45,8 @@ var forExport = {
     rp('https://'+oldRegion+'.api.pvp.net/api/lol/'+oldRegion+'/v1.3/stats/by-summoner/'+summonerID+'/ranked?season=SEASON2016&api_key='+secrets.apiKey)
     .catch(function(error){
       console.log("ERROR: ", error);
+      res.render('index', {error: 'username not found'});
+      return;
     })
     .then(function(body){
       body = JSON.parse(body);
@@ -69,6 +75,12 @@ var forExport = {
         champ['key'] = champInfo[champ.championId]['key'];
         champ['title'] = champInfo[champ.championId]['title'];
 
+        if (champ['championLevel'] >= 4){
+          champ['championLevel'] = true;
+        } else {
+          champ['championLevel'] = false;
+        }
+
         playedThisSeason[champ.championId] = true;
         return champ;
       })
@@ -87,9 +99,12 @@ var forExport = {
         }
       }
       
-      console.log(championMasteryData);
+      var forRender = {};
+      forRender.championMasteryData = championMasteryData;
+      forRender.summonerName = summonerName;
+      console.log(forRender);
 
-      res.render('summoner', {championMasteryData: championMasteryData});
+      res.render('summoner', {forRender: forRender});
 
     })
     })
