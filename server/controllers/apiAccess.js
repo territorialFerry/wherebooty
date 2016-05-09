@@ -10,6 +10,8 @@ var forExport = {
   // GET request for getting summoner id from summoner name
   getData: function(region, summonerName, req, res){
     var lib = {}
+    var oldUsername = summonerName;
+    summonerName = summonerName.split(' ').join('');
     rp('https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+summonerName+'?api_key='+secrets.apiKey)
     .catch(function(error){
       console.log("ERROR: ", error);
@@ -101,7 +103,7 @@ var forExport = {
       
       var forRender = {};
       forRender.championMasteryData = championMasteryData;
-      forRender.summonerName = summonerName;
+      forRender.summonerName = oldUsername;
       console.log(forRender);
 
       res.render('summoner', {forRender: forRender});
