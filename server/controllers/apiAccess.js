@@ -8,7 +8,7 @@ var champInfo = require('./champID.js');
 var forExport = {
 
   // GET request for getting summoner id from summoner name
-  getData: function(region, summonerName){
+  getData: function(region, summonerName, req, res){
     var lib = {}
     rp('https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+summonerName+'?api_key='+secrets.apiKey)
     .catch(function(error){
@@ -89,7 +89,7 @@ var forExport = {
       
       console.log(championMasteryData);
 
-
+      res.render('summoner', {championMasteryData: championMasteryData});
 
     })
     })
@@ -101,7 +101,7 @@ var forExport = {
 
 }
 
-console.log(forExport.getData('na', 'imarker'));
+// console.log(forExport.getData('na', 'imarker'));
 
 module.exports = forExport;
 
