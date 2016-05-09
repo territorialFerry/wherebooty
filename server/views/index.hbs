@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <!-- Compiled and minified CSS -->
 
-  <script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 
   <title>WHERE BOOTY??</title>
@@ -21,37 +19,41 @@
 
     <p class="main-title">WHERE BE ME BOOTY???</p>
 
+    <br>
+    <br>
+
     <div class="row">
-      <div class="col m6 offset-m6">
+      <div class="col m6 offset-m6 s12">
 
-          <form action="" class="col m12 white-text">
+          <form action="/wherebooty/data" class="col m10 offset-m1 white-text s12" method="get">
 
-            <div class="input-field col m12">
-              <input placeholder="input here" id="first_name" type="text" class="validate">
+            <div class="input-field col m12 s12">
+              <input placeholder="input here" id="first_name" type="text" class="validate" name="username" required>
               <label for="first_name">USERNAME</label>
             </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            
-            <div class="input-field col s12">
-              <select name="cars">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="fiat">Fiat</option>
-                <option value="audi">Audi</option>
+
+            <div class="input-field col m12 s12">
+              <select name="region">
+                <!-- <option value="" disabled selected>Choose your option</option> -->
+                <option value="na">na</option>
+                <option value="br">br</option>
+                <option value="eune">eune</option>
+                <option value="euw">euw</option>
+                <option value="jp">jp</option>
+                <option value="kr">kr</option>
+                <option value="lan">lan</option>
+                <option value="las">las</option>
+                <option value="oce">oce</option>
+                <option value="ru">ru</option>
+                <option value="tr">tr</option>
               </select>
+              <label>Input Region</label>
             </div>
 
-            <div class="input-field col s12">
-              <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-              </select>
-              <label>Materialize Select</label>
+            <br>
+            <div class="col s8 offset-s2">
+              <button class="btn waves-effect waves-light deep-orange lighten-5 black-text" type="submit">Submit
+              </button>
             </div>
 
 
@@ -125,6 +127,15 @@
 
 </style>
 
+<script   src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+
 </html>
