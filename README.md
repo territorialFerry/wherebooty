@@ -1,8 +1,8 @@
 # wherebooty
 
-### Description
-
 [Website](http://vokoshyv.com/wherebooty/)
+
+### Description
 
 Arr, ye be having trouble hunting down yer mastery treasure chests?
 Wander no more! Input ye summoner name and region, and find which
