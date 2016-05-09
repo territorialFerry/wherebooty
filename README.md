@@ -2,8 +2,10 @@
 
 ### Description
 
+[Website](http://vokoshyv.com/wherebooty/)
+
 Arr, ye be having trouble hunting down yer mastery treasure chests?
-Wander no more! Input ye summoner name and region below, and find which
+Wander no more! Input ye summoner name and region, and find which
 champions still be harboring chests for the earning!
 
 Built for Riot Games's API Challenge 3.0. Utilizes champion mastery data
