@@ -22,6 +22,7 @@
     "express": "^4.13.4",
     "handlebars": "^4.0.5",
     "request": "^2.72.0",
-    "request-promise": "^3.0.0"
+    "request-promise": "^3.0.0",
+    "url": "^0.11.0"
   }
 }
