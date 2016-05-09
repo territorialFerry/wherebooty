@@ -2,6 +2,10 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var server = http.createServer(app);
+var url = require('url');
+
+// controller functions
+var controller = require('./controllers/apiAccess.js');
 
 // handlebar setup
 var engines = require('consolidate');
@@ -19,9 +23,11 @@ app.get('/wherebooty', function(req, res, next){
   res.render('index');
 })
 
-app.get('/wherebooty/:data', function(req, res, next){
-  console.log('blah');
-  res.send('blah')
+app.get('/wherebooty/data', function(req, res, next){
+  var URL = url.parse(req.url, true);
+  // console.log('URL: ', URL.query);
+  controller.getData(URL.query.region, URL.query.username, req, res);
+  // res.send('blah')
 })
 
 // server.listen(8080,'127.0.0.1',function(){
