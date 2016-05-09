@@ -4,7 +4,9 @@
 
 ### Description
 
-Arr, ye be having trouble hunting down yer mastery treasure chests?
+Arr, League of Legends summoners!!!
+
+Ye be having trouble hunting down yer mastery treasure chests?
 Wander no more! Input ye summoner name and region, and find which
 champions still be harboring chests for the earning!
 
