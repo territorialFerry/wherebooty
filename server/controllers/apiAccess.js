@@ -12,6 +12,7 @@ var forExport = {
     var lib = {}
     var oldUsername = summonerName;
     summonerName = summonerName.split(' ').join('');
+    summonerName = summonerName.toLowerCase();
     rp('https://'+region+'.api.pvp.net/api/lol/'+region+'/v1.4/summoner/by-name/'+summonerName+'?api_key='+secrets.apiKey)
     .catch(function(error){
       console.log("ERROR: ", error);
